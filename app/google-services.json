@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "146173360066",
+    "project_id": "sahyog-53bb2",
+    "storage_bucket": "sahyog-53bb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146173360066:android:56d879031310e2a07b885b",
+        "android_client_info": {
+          "package_name": "com.example.Sahyog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146173360066-fm6e5ih9pi3kh2qkt5sp6nm9gqck0lf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe1oq0kqdwBAnY3fV3iqh2SIppkFjWAsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146173360066-fm6e5ih9pi3kh2qkt5sp6nm9gqck0lf2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
