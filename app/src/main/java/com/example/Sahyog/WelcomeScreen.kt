@@ -44,14 +44,14 @@ class WelcomeScreen : AppCompatActivity() , AdapterView.OnItemClickListener{
         var items:LanguageItem = arrayList!!.get(p2)
         val intent:Intent
         when(items.name){
-//            "Weather"->{
-//                intent = Intent(this, WeatherScreen::class.java)
-//                startActivity(intent)
-//            }
-//            "Current Crop"->{
-//                intent = Intent(this, CurrentCrop::class.java)
-//                startActivity(intent)
-//            }
+            "Weather"->{
+                intent = Intent(this, WeatherScreen::class.java)
+                startActivity(intent)
+            }
+            "Current Crop"->{
+                intent = Intent(this, CurrentCrop::class.java)
+                startActivity(intent)
+            }
         }
         Toast.makeText(this, items.name, Toast.LENGTH_SHORT).show()
     }
