@@ -1,5 +1,6 @@
 package com.example.Sahyog
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,17 +12,15 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import org.w3c.dom.Text
 
 class SignupPage : AppCompatActivity() {
 
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
-//        auth = FirebaseAuth.getInstance()
+        auth = Firebase.auth
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_page)
-        var email = findViewById<EditText>(R.id.email)
-        var mobileNumber = findViewById<EditText>(R.id.mobile_no)
-        var initialPassword = findViewById<EditText>(R.id.password1)
-        var confirmPassword = findViewById<EditText>(R.id.password2)
         var button = findViewById<Button>(R.id.signup)
         val backSignin = findViewById<TextView>(R.id.back_to_signin)
 
@@ -30,22 +29,42 @@ class SignupPage : AppCompatActivity() {
             startActivity(Intent)
         }
 
-        button.setOnClickListener{
-            val first = email.text;
-            val second = mobileNumber.text;
-            val third = initialPassword.text;
-            val forth = confirmPassword.text;
-            if(email.text.isEmpty() || mobileNumber.text.isEmpty() || initialPassword.text.isEmpty() || confirmPassword.text.isEmpty())
-            {
-                Toast.makeText(this, "Please fill all the fields.", Toast.LENGTH_SHORT).show()
-            }
-            else
-            {
-                Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
-                val Intent = Intent(this, WelcomeScreen::class.java)
-                startActivity(Intent)
-            }
+        button.setOnClickListener() {
+            performSignUp()
         }
     }
 
+    private fun performSignUp() {
+        val email = findViewById<EditText>(R.id.email)
+        val mobileNumber = findViewById<EditText>(R.id.mobile_no)
+        val initialPassword = findViewById<EditText>(R.id.password1)
+        val confirmPassword = findViewById<EditText>(R.id.password2)
+
+        if(email.text.isEmpty() || mobileNumber.text.isEmpty() || initialPassword.text.isEmpty() || confirmPassword.text.isEmpty())
+        {
+            Toast.makeText(this, "Please fill all the details.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val inputEmail = email.text.toString()
+        lateinit var inputPassword: String
+        if(initialPassword.text.toString() == confirmPassword.text.toString())
+            inputPassword = initialPassword.text.toString()
+        else
+        {
+            Toast.makeText(this, "Password does not matched!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        auth.createUserWithEmailAndPassword(inputEmail, inputPassword).addOnCompleteListener(this)
+        {
+            task ->
+            if (task.isSuccessful)
+            {
+                val intent = Intent(this, WelcomeScreen::class.java)
+                startActivity(intent)
+                Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
+            }
+            else
+                Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
