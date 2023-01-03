@@ -43,7 +43,7 @@ class SplashScreen : AppCompatActivity() {
                             intent.putExtra("Lat", location.latitude.toString())
                             intent.putExtra("Long", location.longitude.toString())
                             finish()
-                        }, 1500)
+                        }, 2000)
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     }

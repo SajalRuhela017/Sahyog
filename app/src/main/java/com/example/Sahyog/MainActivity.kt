@@ -24,30 +24,27 @@ class MainActivity : AppCompatActivity() {
 
         var email = findViewById<EditText>(R.id.email)
         var password = findViewById<EditText>(R.id.password)
-        var button = findViewById<Button>(R.id.signinbutton)
+        var signInButton = findViewById<Button>(R.id.signinbutton)
         var signupButton = findViewById<TextView>(R.id.signup1)
         var forgotEmail = findViewById<TextView>(R.id.forget)
 
-        button.setOnClickListener {
-            val first = email.text
-            val second = password.text
+        signInButton.setOnClickListener {
             if(email.text.isEmpty() || password.text.isEmpty())
             {
                 Toast.makeText(this, "Please fill all the fields" , Toast.LENGTH_SHORT).show()
             }
             else
             {
-                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                val Intent = Intent(this, WelcomeScreen::class.java)
-                startActivity(Intent)
+                performSignIn()
             }
         }
         signupButton.setOnClickListener {
-            performSignIn()
+            val intent = Intent(this, SignupPage::class.java)
+            startActivity(intent)
         }
         forgotEmail.setOnClickListener {
-            val Intent = Intent(this, ForgotPassword::class.java)
-            startActivity(Intent)
+            val intent = Intent(this, ForgotPassword::class.java)
+            startActivity(intent)
         }
     }
 
@@ -55,27 +52,24 @@ class MainActivity : AppCompatActivity() {
     {
         val email = findViewById<EditText>(R.id.email)
         val password = findViewById<EditText>(R.id.password)
-        if(email.text.isEmpty() || password.text.isEmpty())
-        {
-            Toast.makeText(this, "Please fill all the fields.", Toast.LENGTH_SHORT).show()
-            return
-        }
         val emailInput = email.text.toString()
         val passwordInput = password.text.toString()
-        auth.signInWithEmailAndPassword(emailInput, passwordInput)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful)
-                {
-                    getCurrentUser()
-                    val intent = Intent(this, WelcomeScreen::class.java)
-                    startActivity(intent)
-                    Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-                }
-                else
-                {
-                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                }
+        auth.signInWithEmailAndPassword(emailInput, passwordInput).addOnCompleteListener(this)
+        {
+            task ->
+            if (task.isSuccessful)
+            {
+//              getCurrentUser()
+                val user = auth.currentUser
+                val intent = Intent(this, WelcomeScreen::class.java)
+                startActivity(intent)
+                Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
             }
+            else
+            {
+                Toast.makeText(this, "Authentication failed. \nUsername/Password incorrect", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun getCurrentUser() {
