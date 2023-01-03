@@ -20,14 +20,19 @@ class ForgotPassword : AppCompatActivity() {
         var backToSigning = findViewById<TextView>(R.id.forgot_to_signin)
 
         submitEmail.setOnClickListener {
-            if(!email.text.isEmpty())
-                Toast.makeText(this , "If you have an account, mail has been sent to reset your password", Toast.LENGTH_LONG).show()
+            if(!email.text.isEmpty()) {
+                Toast.makeText(this,"If you have an account, mail has been sent to reset your password.\n", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
             else
-                Toast.makeText(this , "Please enter your registed email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this , "Please enter your registered email", Toast.LENGTH_SHORT).show()
         }
         backToSigning.setOnClickListener {
-            val Intent = Intent(this , MainActivity::class.java)
-            startActivity(Intent)
+            val intent = Intent(this , MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

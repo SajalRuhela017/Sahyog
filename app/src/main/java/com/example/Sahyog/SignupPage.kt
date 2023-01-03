@@ -1,10 +1,8 @@
 package com.example.Sahyog
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -12,7 +10,6 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Text
 
 class SignupPage : AppCompatActivity() {
 
@@ -25,8 +22,9 @@ class SignupPage : AppCompatActivity() {
         val backSignin = findViewById<TextView>(R.id.back_to_signin)
 
         backSignin.setOnClickListener {
-            val Intent = Intent(this, MainActivity::class.java)
-            startActivity(Intent)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         button.setOnClickListener() {
