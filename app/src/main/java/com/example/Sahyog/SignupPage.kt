@@ -59,6 +59,7 @@ class SignupPage : AppCompatActivity() {
             {
                 val intent = Intent(this, WelcomeScreen::class.java)
                 startActivity(intent)
+                finish()
                 Toast.makeText(this, "Successful signup!", Toast.LENGTH_SHORT).show()
             }
             else

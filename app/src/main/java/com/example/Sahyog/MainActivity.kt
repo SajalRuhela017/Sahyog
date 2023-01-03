@@ -41,10 +41,12 @@ class MainActivity : AppCompatActivity() {
         signupButton.setOnClickListener {
             val intent = Intent(this, SignupPage::class.java)
             startActivity(intent)
+            finish()
         }
         forgotEmail.setOnClickListener {
             val intent = Intent(this, ForgotPassword::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                 val user = auth.currentUser
                 val intent = Intent(this, WelcomeScreen::class.java)
                 startActivity(intent)
+                finish()
                 Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
             }
             else

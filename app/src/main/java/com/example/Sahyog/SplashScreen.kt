@@ -46,6 +46,7 @@ class SplashScreen : AppCompatActivity() {
                         }, 2000)
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                 }
             }else{
