@@ -96,7 +96,7 @@
                android:layout_marginHorizontal="30dp"
                android:layout_marginTop="25dp"
                android:background="#B39DDB"
-               android:drawableLeft="@drawable/ic_baseline_email_24"
+               android:drawableLeft="@drawable/ic_baseline_lock_24"
                android:drawablePadding="10dp"
                android:hint="Confirm Password"
                android:inputType="textPassword"

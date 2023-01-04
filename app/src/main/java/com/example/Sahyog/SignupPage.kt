@@ -19,9 +19,9 @@ class SignupPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_page)
         val button = findViewById<Button>(R.id.signup)
-        val backSignin = findViewById<TextView>(R.id.back_to_signin)
+        val signIn = findViewById<TextView>(R.id.back_to_signin)
 
-        backSignin.setOnClickListener {
+        signIn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

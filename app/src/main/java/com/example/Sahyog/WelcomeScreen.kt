@@ -19,6 +19,7 @@ class WelcomeScreen : AppCompatActivity() , AdapterView.OnItemClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_screen)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
         gridView = findViewById(R.id.essentials)
         arrayList = ArrayList()
@@ -31,12 +32,10 @@ class WelcomeScreen : AppCompatActivity() , AdapterView.OnItemClickListener{
 
     private fun setDataList() : ArrayList<LanguageItem>{
         var arrayList:ArrayList<LanguageItem> = ArrayList()
-
         arrayList.add(LanguageItem(R.drawable.weather, "Weather"))
         arrayList.add(LanguageItem(R.drawable.moisture, "Moisture"))
         arrayList.add(LanguageItem(R.drawable.predict, "Crop Prediction"))
         arrayList.add(LanguageItem(R.drawable.current_crop, "Current Crop"))
-
         return arrayList
     }
 
