@@ -18,7 +18,7 @@ class SignupPage : AppCompatActivity() {
         auth = Firebase.auth
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_page)
-        var button = findViewById<Button>(R.id.signup)
+        val button = findViewById<Button>(R.id.signup)
         val backSignin = findViewById<TextView>(R.id.back_to_signin)
 
         backSignin.setOnClickListener {
@@ -59,8 +59,8 @@ class SignupPage : AppCompatActivity() {
             {
                 val intent = Intent(this, WelcomeScreen::class.java)
                 startActivity(intent)
-                finish()
                 Toast.makeText(this, "Successful signup!", Toast.LENGTH_SHORT).show()
+                finish()
             }
             else
                 Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()

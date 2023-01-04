@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         auth = Firebase.auth
 
-        var email = findViewById<EditText>(R.id.email)
-        var password = findViewById<EditText>(R.id.password)
-        var signInButton = findViewById<Button>(R.id.signinbutton)
-        var signupButton = findViewById<TextView>(R.id.signup1)
-        var forgotEmail = findViewById<TextView>(R.id.forget)
+        val email = findViewById<EditText>(R.id.email)
+        val password = findViewById<EditText>(R.id.password)
+        val signInButton = findViewById<Button>(R.id.signinbutton)
+        val signupButton = findViewById<TextView>(R.id.signup1)
+        val forgotEmail = findViewById<TextView>(R.id.forget)
 
         signInButton.setOnClickListener {
             if(email.text.isEmpty() || password.text.isEmpty())
@@ -61,8 +61,6 @@ class MainActivity : AppCompatActivity() {
             task ->
             if (task.isSuccessful)
             {
-//              getCurrentUser()
-                val user = auth.currentUser
                 val intent = Intent(this, WelcomeScreen::class.java)
                 startActivity(intent)
                 finish()
@@ -72,17 +70,6 @@ class MainActivity : AppCompatActivity() {
             {
                 Toast.makeText(this, "Authentication failed. \nUsername/Password incorrect", Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-
-    private fun getCurrentUser() {
-        val user = Firebase.auth.currentUser
-        user?.let {
-            val name = user.displayName
-            val email = user.email
-            val photoUrl = user.photoUrl
-            val emailVerified = user.isEmailVerified
-            val uid = user.uid
         }
     }
 }
