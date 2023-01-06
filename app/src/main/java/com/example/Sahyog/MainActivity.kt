@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         forgotEmail.setOnClickListener {
             val intent = Intent(this, ForgotPassword::class.java)
             startActivity(intent)
-            finish()
         }
     }
 

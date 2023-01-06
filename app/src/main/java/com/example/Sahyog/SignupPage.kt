@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SignupPage : AppCompatActivity() {
@@ -57,13 +58,21 @@ class SignupPage : AppCompatActivity() {
             task ->
             if (task.isSuccessful)
             {
-                val intent = Intent(this, WelcomeScreen::class.java)
-                startActivity(intent)
-                Toast.makeText(this, "Successful signup!", Toast.LENGTH_SHORT).show()
-                finish()
+                auth.currentUser?.sendEmailVerification()
+                    ?.addOnSuccessListener {
+                        Toast.makeText(this , "Please verify your email via link sent to your email" , Toast.LENGTH_SHORT).show()
+                        saveData()
+                    }
+                    ?.addOnFailureListener {
+                        Toast.makeText(this , it.toString() , Toast.LENGTH_SHORT).show()
+                    }
             }
             else
                 Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun saveData() {
+        TODO("Not yet implemented")
     }
 }
