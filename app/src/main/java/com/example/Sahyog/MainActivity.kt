@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -41,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         signupButton.setOnClickListener {
             val intent = Intent(this, SignupPage::class.java)
             startActivity(intent)
-            finish()
         }
         forgotEmail.setOnClickListener {
             val intent = Intent(this, ForgotPassword::class.java)
@@ -55,15 +55,30 @@ class MainActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.password)
         val emailInput = email.text.toString()
         val passwordInput = password.text.toString()
+
         auth.signInWithEmailAndPassword(emailInput, passwordInput).addOnCompleteListener(this)
         {
             task ->
             if (task.isSuccessful)
             {
-                val intent = Intent(this, WelcomeScreen::class.java)
-                startActivity(intent)
-                finish()
-                Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
+                if(Firebase.auth.currentUser!!.isEmailVerified)
+                {
+                    val intent = Intent(this, WelcomeScreen::class.java)
+                    startActivity(intent)
+                    finish()
+                    Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
+                }
+                else
+                {
+                    Toast.makeText(this, "Please verify your email.", Toast.LENGTH_SHORT).show()
+                    auth.currentUser?.sendEmailVerification()
+                        ?.addOnSuccessListener {
+                            Toast.makeText(this , "Verification link resent." , Toast.LENGTH_SHORT).show()
+                        }
+                        ?.addOnFailureListener {
+                            Toast.makeText(this , it.toString() , Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
             else
             {

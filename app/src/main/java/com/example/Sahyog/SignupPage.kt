@@ -44,6 +44,11 @@ class SignupPage : AppCompatActivity() {
             Toast.makeText(this, "Please fill all the details.", Toast.LENGTH_SHORT).show()
             return
         }
+        if(mobileNumber.text.toString() < "6000000000")
+        {
+            Toast.makeText(this, "Please enter valid mobile number.", Toast.LENGTH_SHORT).show()
+            return
+        }
         val inputEmail = email.text.toString()
         lateinit var inputPassword: String
         if(initialPassword.text.toString() == confirmPassword.text.toString())
@@ -60,7 +65,10 @@ class SignupPage : AppCompatActivity() {
             {
                 auth.currentUser?.sendEmailVerification()
                     ?.addOnSuccessListener {
-                        Toast.makeText(this , "Please verify your email via link sent to your email" , Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this , "Please verify your email with the link sent to your email." , Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this , MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
                         saveData()
                     }
                     ?.addOnFailureListener {
