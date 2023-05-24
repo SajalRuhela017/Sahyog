@@ -32,7 +32,7 @@
             android:layout_below="@id/title">
 
             <TextView
-                android:id="@+id/city"
+                android:id="@+id/tvCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ghaziabad"
@@ -45,7 +45,7 @@
                 android:id="@+id/location_img"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_toLeftOf="@+id/city"
+                android:layout_toLeftOf="@+id/tvCity"
                 android:layout_marginTop="18dp"
                 android:layout_marginRight="7dp"
                 android:src="@drawable/ic_baseline_location_on_24">
@@ -56,11 +56,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_below="@id/city"
+                android:layout_below="@id/tvCity"
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Day "
@@ -69,7 +68,7 @@
                     android:textSize="15dp">
                 </TextView>
                 <TextView
-                    android:id="@+id/max_temp"
+                    android:id="@+id/tvMaxTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="21°"
@@ -78,13 +77,11 @@
                     android:textSize="15dp">
                 </TextView>
                 <ImageView
-                    android:id="@+id/up_arrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/arrow_upward">
                 </ImageView>
                 <TextView
-                    android:id="@+id/night"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
@@ -94,7 +91,7 @@
                     android:textSize="15dp">
                 </TextView>
                 <TextView
-                    android:id="@+id/min_temp"
+                    android:id="@+id/tvMinTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="7°"
@@ -103,7 +100,6 @@
                     android:textSize="15dp">
                 </TextView>
                 <ImageView
-                    android:id="@+id/down_arrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/arrow_downward">
@@ -111,7 +107,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/curr_temp"
+                android:id="@+id/tvCurrTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/min_max_ly"
@@ -121,10 +117,9 @@
                 android:textColor="#FFF59D">
             </TextView>
             <TextView
-                android:id="@+id/deg_cel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/curr_temp"
+                android:layout_toRightOf="@id/tvCurrTemp"
                 android:layout_below="@id/min_max_ly"
                 android:textSize="40dp"
                 android:layout_marginTop="8dp"
@@ -133,10 +128,10 @@
                 android:textColor="#FFF59D">
             </TextView>
             <TextView
-                android:id="@+id/type"
+                android:id="@+id/tvType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/curr_temp"
+                android:layout_below="@id/tvCurrTemp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:text="Haze"
@@ -146,16 +141,15 @@
             </TextView>
 
             <LinearLayout
-                android:id="@+id/other_ly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:orientation="vertical"
                 android:layout_marginTop="25dp"
-                android:layout_below="@id/type">
+                android:layout_below="@id/tvType">
 
                 <TextView
-                    android:id="@+id/pressure"
+                    android:id="@+id/tvPressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -165,7 +159,7 @@
                     android:layout_margin="10dp">
                 </TextView>
                 <TextView
-                    android:id="@+id/humidity"
+                    android:id="@+id/tvHumidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -175,7 +169,7 @@
                     android:layout_margin="10dp">
                 </TextView>
                 <TextView
-                    android:id="@+id/wind_speed"
+                    android:id="@+id/tvWindSpeed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -185,7 +179,7 @@
                     android:layout_margin="10dp">
                 </TextView>
                 <TextView
-                    android:id="@+id/wind_degree"
+                    android:id="@+id/tvWindDegree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
