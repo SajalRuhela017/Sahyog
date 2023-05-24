@@ -20,7 +20,7 @@ import com.google.android.gms.location.LocationServices
 
 class SplashScreen : AppCompatActivity() {
     lateinit var mfusedlocation: FusedLocationProviderClient
-    private var myRequestCode = 6969
+    private var myRequestCode = 1111
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -30,20 +30,20 @@ class SplashScreen : AppCompatActivity() {
     }
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
-        if(CheckPermission()) {
-            if(LocationEnable()) {
+        if(checkPermission()) {
+            if(locationEnable()) {
                 mfusedlocation.lastLocation.addOnCompleteListener{
                         task ->
                     var location: Location?=task.result
                     if(location == null) {
-                        NewLocation()
+                        newLocation()
                     }else{
                         Handler(Looper.getMainLooper()).postDelayed({
                             val intent =  Intent(this, WeatherScreen::class.java)
                             intent.putExtra("Lat", location.latitude.toString())
                             intent.putExtra("Long", location.longitude.toString())
                             finish()
-                        }, 2000)
+                        }, 500)
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -53,12 +53,12 @@ class SplashScreen : AppCompatActivity() {
                 Toast.makeText(this, "Please enable location services", Toast.LENGTH_SHORT).show()
             }
         }else{
-            RequestPermission()
+            requestPermission()
         }
     }
 
     @SuppressLint("MissingPermission")
-    private fun NewLocation() {
+    private fun newLocation() {
         var locationRequest = com.google.android.gms.location.LocationRequest()
         locationRequest.priority = com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = 0
@@ -75,18 +75,18 @@ class SplashScreen : AppCompatActivity() {
         }
     }
 
-    private fun LocationEnable(): Boolean {
+    private fun locationEnable(): Boolean {
         var locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER)
     }
 
-    private fun RequestPermission() {
+    private fun requestPermission() {
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
             android.Manifest.permission.ACCESS_FINE_LOCATION),myRequestCode)
     }
 
-    private fun CheckPermission(): Boolean {
+    private fun checkPermission(): Boolean {
         return ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }

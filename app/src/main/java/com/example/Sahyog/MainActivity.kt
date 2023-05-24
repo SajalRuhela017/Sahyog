@@ -22,7 +22,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = Firebase.auth
-
+        val instance = FirebaseAuth.getInstance()
+        if(instance.currentUser != null) {
+            Toast.makeText(this, "Already logged in", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, WelcomeScreen::class.java)
+            startActivity(intent)
+            finish()
+        }
         val email = findViewById<EditText>(R.id.email)
         val password = findViewById<EditText>(R.id.password)
         val signInButton = findViewById<Button>(R.id.signinbutton)
@@ -31,13 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         signInButton.setOnClickListener {
             if(email.text.isEmpty() || password.text.isEmpty())
-            {
                 Toast.makeText(this, "Please fill all the fields" , Toast.LENGTH_SHORT).show()
-            }
             else
-            {
                 performSignIn()
-            }
         }
         signupButton.setOnClickListener {
             val intent = Intent(this, SignupPage::class.java)
